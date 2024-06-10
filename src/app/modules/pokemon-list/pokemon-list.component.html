@@ -1,0 +1,41 @@
+<ng-container *ngIf="pokemons$ | async">
+  <div class="container">
+    <h2 class="header">
+      Danh sách Pokemon
+    </h2>
+    <div class="filter-container">
+      <select [(ngModel)]="filter().sort" class="select" (ngModelChange)="onChangeSort($event)">
+        <option [value]="item.value" *ngFor="let item of listSort">{{item.label}}</option>
+      </select>
+      <select class="select" [(ngModel)]="filter().sortBy" (ngModelChange)="onChangeSortBy($event)">
+        <option [value]="item.value" *ngFor="let item of sortByOptions">{{item.label}}</option>
+      </select>
+    </div>
+    <div class="table-container">
+      <table class="table">
+        <thead>
+          <tr class="tr-header-table">
+            <th class="th-item">Tên</th>
+            <th class="th-item">Máu</th>
+            <th class="th-item">Phòng thủ</th>
+            <th class="th-item">Phòng thủ đặc biệt</th>
+            <th class="th-item">Tấn công đặc biệt</th>
+            <th class="th-item">Tấn công</th>
+            <th class="th-item">Tốc độ</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let pokemon of listPokemons()" class="tr-body-table">
+            <td class="td-item">{{pokemon.name}}</td>
+            <td class="td-item">{{pokemon.hp}}</td>
+            <td class="td-item">{{pokemon.defense}}</td>
+            <td class="td-item">{{pokemon.sp_def}}</td>
+            <td class="td-item">{{pokemon.sp_atk}}</td>
+            <td class="td-item">{{pokemon.attack}}</td>
+            <td class="td-item">{{pokemon.speed}}</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</ng-container>

@@ -1,0 +1,89 @@
+div.container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  height: 100%;
+  padding: 16px;
+  overflow: hidden;
+  box-sizing: border-box;
+  h2.header {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+  }
+  div.filter-container {
+    padding-top: 6px;
+    padding-bottom: 6px;
+    display: flex;
+    justify-content: end;
+    gap: 4px;
+    select.select {
+      padding: 8px;
+      border-radius: 8px;
+      border: 1px solid #ccc;
+      background-color: white;
+      color: #333;
+      font-size: 16px;
+      option.option {
+        background-color: white;
+        color: #333;
+        font-size: 16px;
+      }
+    }
+  }
+  div.table-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    table.table {
+      height: 100%;
+      overflow: auto;
+      width: 100%;
+      tr.tr-header-table {
+        border-top-left-radius: 8px;
+        border-top-right-radius: 8px;
+        background-color: #36304a;
+        font-weight: bold;
+        height: 60px;
+        th.th-item:first-child {
+          border-top-left-radius: 8px;
+          text-align: center;
+        }
+        th.th-item:last-child {
+          border-top-right-radius: 8px;
+          text-align: center;
+        }
+        th.th-item {
+          min-width: 80px;
+          color: white;
+          text-align: center;
+        }
+      }
+      tr.tr-body-table:nth-child(odd) {
+        background-color: #f5f5f5; /* Màu cho dòng lẻ */
+      }
+
+      tr.tr-body-table:nth-child(even) {
+        background-color: #ffffff; /* Màu cho dòng chẵn */
+      }
+      tr.tr-body-table {
+        cursor: pointer;
+        height: 50px;
+        td.td-item {
+          // background-color: #f9f9f9;
+          text-align: center;
+        }
+      }
+      tr.tr-body-table:last-child {
+        td.td-item:first-child {
+          border-bottom-left-radius: 8px;
+        }
+        td.td-item:last-child {
+          border-bottom-right-radius: 8px;
+        }
+      }
+    }
+  }
+}
