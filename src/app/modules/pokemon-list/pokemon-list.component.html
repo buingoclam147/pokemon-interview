@@ -12,7 +12,7 @@
       </select>
     </div>
     <div class="table-container">
-      <table class="table">
+      <table class="table" border="0" cellspacing="0" cellpadding="0">
         <thead>
           <tr class="tr-header-table">
             <th class="th-item">Tên</th>
@@ -35,6 +35,43 @@
             <td class="td-item">{{pokemon.speed}}</td>
           </tr>
         </tbody>
+        <tfoot class="table-footer">
+          <tr>
+            <td>
+              <label for="pageSize">Hiển thị</label>
+              <select id="pageSize">
+                <option value="10">10</option>
+                <option value="25">25</option>
+                <option value="50">50</option>
+                <option value="100">100</option>
+              </select>
+              <label for="pageSize">mục</label>
+            </td>
+            <td>
+              <div class="page-navigation">
+                <button>Trước</button>
+                <span class="page-index">3 / 4</span>
+                <button>Sau</button>
+              </div>
+            </td>
+          </tr>
+          <!-- <div class="page-size">
+            <label for="pageSize">Hiển thị</label>
+            <select id="pageSize">
+              <option value="10">10</option>
+              <option value="25">25</option>
+              <option value="50">50</option>
+              <option value="100">100</option>
+            </select>
+            <label for="pageSize">mục</label>
+          </div>
+
+          <div class="page-navigation">
+            <button>Trước</button>
+            <span class="page-index">3 / 4</span>
+            <button>Sau</button>
+          </div> -->
+        </tfoot>
       </table>
     </div>
   </div>
