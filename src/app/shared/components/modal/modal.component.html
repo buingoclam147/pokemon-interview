@@ -1,3 +1,18 @@
-<div class="modal-container">
-  <ng-content></ng-content>
+<div class="modal-overlay" *ngIf="show" (click)="closeModal()">
+  <div class="modal-container" (click)="$event.stopPropagation()" [style.width.px]="optionSize[size]">
+    <div class="modal-header" *ngIf="title">
+      <h2 class="modal-title">{{ title }}</h2>
+      <button class="modal-close" (click)="closeModal()">
+        <span class="close-icon">x</span>
+      </button>
+    </div>
+    <div class="modal-body">
+      <ng-content></ng-content>
+    </div>
+    <div class="modal-footer">
+      <button class="modal-button" *ngIf="showFooter" (click)="closeWithResult(true)">Confirm</button>
+      <button class="modal-button" *ngIf="showFooter" (click)="closeWithResult(false)">Cancel</button>
+      <ng-content select="footer"></ng-content>
+    </div>
+  </div>
 </div>

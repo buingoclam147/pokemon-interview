@@ -1,4 +1,11 @@
 /* You can add global styles to this file, and also import other style files */
+@import "./assets/styles/btn.scss";
+@import "./assets/styles/select.scss";
+@import "./assets/styles/scroll.scss";
+@import "./assets/styles/color.scss";
+@import "./assets/styles/text.scss";
+@import "./assets/styles/spin.scss";
+
 body {
   font-family: "Roboto", sans-serif;
   margin: 0;

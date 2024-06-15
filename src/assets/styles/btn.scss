@@ -1,0 +1,17 @@
+.btn {
+  padding: 6px 10px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 14px;
+  font-weight: 600;
+  background-color: #3868e3;
+  &:active {
+    transform: translate(1px, 0.5px);
+    box-shadow: -5px -5px 10px #3868e3;
+  }
+}
+
+.btn-primary {
+  color: white;
+}

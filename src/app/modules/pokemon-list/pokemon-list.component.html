@@ -1,20 +1,23 @@
+<link rel="preconnect" href="https://api.vandvietnam.com">
 <ng-container *ngIf="pokemons$ | async">
   <div class="container">
     <h2 class="header">
       Danh sách Pokemon
     </h2>
     <div class="filter-container">
-      <select [(ngModel)]="filter().sort" class="select" (ngModelChange)="onChangeSort($event)">
+      <select [(ngModel)]="filter().sort" class="select select-sort" (ngModelChange)="onChangeSort($event)">
+        <option value="" selected>Sắp xếp theo</option>
         <option [value]="item.value" *ngFor="let item of listSort">{{item.label}}</option>
       </select>
-      <select class="select" [(ngModel)]="filter().sortBy" (ngModelChange)="onChangeSortBy($event)">
+      <select class="select select-sort-by" [(ngModel)]="filter().sortBy" (ngModelChange)="onChangeSortBy($event)">
         <option [value]="item.value" *ngFor="let item of sortByOptions">{{item.label}}</option>
       </select>
     </div>
     <div class="table-container">
-      <table class="table" border="0" cellspacing="0" cellpadding="0">
+      <table class="table-header" border="0" cellspacing="0" cellpadding="0">
         <thead>
           <tr class="tr-header-table">
+            <th class="th-item">avatar</th>
             <th class="th-item">Tên</th>
             <th class="th-item">Máu</th>
             <th class="th-item">Phòng thủ</th>
@@ -24,55 +27,66 @@
             <th class="th-item">Tốc độ</th>
           </tr>
         </thead>
-        <tbody>
-          <tr *ngFor="let pokemon of listPokemons()" class="tr-body-table">
-            <td class="td-item">{{pokemon.name}}</td>
-            <td class="td-item">{{pokemon.hp}}</td>
-            <td class="td-item">{{pokemon.defense}}</td>
-            <td class="td-item">{{pokemon.sp_def}}</td>
-            <td class="td-item">{{pokemon.sp_atk}}</td>
-            <td class="td-item">{{pokemon.attack}}</td>
-            <td class="td-item">{{pokemon.speed}}</td>
-          </tr>
-        </tbody>
-        <tfoot class="table-footer">
-          <tr>
-            <td>
-              <label for="pageSize">Hiển thị</label>
-              <select id="pageSize">
-                <option value="10">10</option>
-                <option value="25">25</option>
-                <option value="50">50</option>
-                <option value="100">100</option>
-              </select>
-              <label for="pageSize">mục</label>
-            </td>
-            <td>
-              <div class="page-navigation">
-                <button>Trước</button>
-                <span class="page-index">3 / 4</span>
-                <button>Sau</button>
-              </div>
-            </td>
-          </tr>
-          <!-- <div class="page-size">
-            <label for="pageSize">Hiển thị</label>
-            <select id="pageSize">
-              <option value="10">10</option>
-              <option value="25">25</option>
-              <option value="50">50</option>
-              <option value="100">100</option>
-            </select>
-            <label for="pageSize">mục</label>
-          </div>
-
-          <div class="page-navigation">
-            <button>Trước</button>
-            <span class="page-index">3 / 4</span>
-            <button>Sau</button>
-          </div> -->
-        </tfoot>
       </table>
+      <div class="container-table-body tds-custom-scroll">
+        <table class="table-body" border="0" cellspacing="0" cellpadding="0">
+          <tbody>
+            <tr *ngFor="let pokemon of dataPokemons()?.data" class="tr-body-table" (click)="idModal = pokemon.id">
+              <td class="td-item">
+                <img [ngSrc]="'https://api.vandvietnam.com/api/pokemon-api/pokemons/'+pokemon.id+'/sprite'" alt="avatar"
+                  [width]="96" [height]="96" ng-optimized-image priority>
+              </td>
+              <td class="td-item primary font-semibold">{{pokemon.name}}</td>
+              <td class="td-item">{{pokemon.hp}}</td>
+              <td class="td-item">{{pokemon.defense}}</td>
+              <td class="td-item">{{pokemon.sp_def}}</td>
+              <td class="td-item">{{pokemon.sp_atk}}</td>
+              <td class="td-item">{{pokemon.attack}}</td>
+              <td class="td-item">{{pokemon.speed}}</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <tbody *ngIf="isLoading()" class="loading">
+        ...loading
+      </tbody>
+      <div class="table-footer">
+        <div class="left-table-footer">
+          <div>
+            <div class="page-navigation">
+              <button class="btn btn-primary btn-animation-click"
+                (click)="changePageIndex(filter()['page[number]']-1)">Trước</button>
+              <span class="page-index">{{filter()!['page[number]'] || 1}} / {{
+                +dataPokemons()?.meta!.last_page ||
+                1}}</span>
+              <button class="btn btn-primary" (click)="changePageIndex(filter()['page[number]']+1)">Sau</button>
+            </div>
+          </div>
+          <div class="page-size-option">
+            <div>Hiển thị</div>
+            <select class="select" [(ngModel)]="filter()['page[size]']" (ngModelChange)="onChangePageSize($event)">
+              <option [value]="item.value" *ngFor="let item of pageSizeOption">{{item.label}}</option>
+            </select>
+            <div>mục</div>
+          </div>
+        </div>
+        <div class="right-table-footer">
+          <div class="total-item">Tổng số mục: {{ dataPokemons()?.meta!.total || 0}}</div>
+        </div>
+      </div>
     </div>
   </div>
 </ng-container>
+
+<modal #myModal [show]="!!idModal" [title]="null" [showFooter]="false" (close)="idModal=null">
+  <pokemon-detail [id]="idModal" *ngIf="idModal" />
+  <!-- <div>
+    <img [src]="'https://api.vandvietnam.com/api/pokemon-api/pokemons/01H5GXS3PSZ5V4DBCR31S64SDJ/sprite'" alt="">
+    <p>Modal content goes here.</p>
+  </div> -->
+  <ng-container ngProjectAs="footer">
+    <div class="footer-modal">
+      <button class="btn btn-primary" (click)="idModal=null">Đóng</button>
+    </div>
+  </ng-container>
+</modal>
