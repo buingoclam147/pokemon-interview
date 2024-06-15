@@ -1,6 +1,6 @@
 import { CreateSignalOptions, signal, WritableSignal } from "@angular/core";
 import { SignalGetter } from "@angular/core/primitives/signals";
-import { PatchableSignal } from "../models/common.model";
+import { PatchableSignal } from "../../models/common.model";
 
 const covertQueryParams = <T>(obj: T): string => {
   return (

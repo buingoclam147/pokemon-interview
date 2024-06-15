@@ -47,3 +47,9 @@ export type TKeyOfItemPokemonDto = keyof IItemPokemonDto;
 export interface IRequestList extends ITableRequestBase {
   sort: string;
 }
+
+export interface IDetailPokemonDto {
+  data: IItemPokemonDto;
+  status: number;
+  success: boolean;
+}

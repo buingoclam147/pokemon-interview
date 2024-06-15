@@ -1,0 +1,68 @@
+<div class="header-card">
+  <span class="title-card">
+    Thông tin
+  </span>
+  <div class="title-avatar-card">
+    avatar
+  </div>
+</div>
+<div class="container-img-sprite-card">
+  <img [ngSrc]="'https://api.vandvietnam.com/api/pokemon-api/pokemons/'+id+'/sprite'" alt="sprite" [width]="216"
+    [height]="216">
+</div>
+<div class="body-card" *ngIf="pokemons$|async">
+  <div class="name-body-card">
+    {{dataPokemon()!.data!.name}}
+  </div>
+  <div class="info-body-card">
+    <div class="info-item-body-card">
+      <div class="info-title-body-card">
+        Máu
+      </div>
+      <div class="info-value-body-card">
+        {{dataPokemon()!.data!.hp}}
+      </div>
+    </div>
+    <div class="info-item-body-card">
+      <div class="info-title-body-card">
+        Phòng thủ
+      </div>
+      <div class="info-value-body-card">
+        {{dataPokemon()!.data!.defense}}
+      </div>
+    </div>
+    <div class="info-item-body-card">
+      <div class="info-title-body-card">
+        Phòng thủ đặc biệt
+      </div>
+      <div class="info-value-body-card">
+        {{dataPokemon()!.data!.sp_def}}
+      </div>
+    </div>
+    <div class="info-item-body-card">
+      <div class="info-title-body-card">
+        Tấn công
+      </div>
+      <div class="info-value-body-card">
+        {{dataPokemon()!.data!.attack}}
+      </div>
+    </div>
+    <div class="info-item-body-card">
+      <div class="info-title-body-card">
+        Tấn công đặc biệt
+      </div>
+      <div class="info-value-body-card">
+        {{dataPokemon()!.data!.sp_atk}}
+      </div>
+    </div>
+    <div class="info-item-body-card">
+      <div class="info-title-body-card">
+        Tốc độ
+      </div>
+      <div class="info-value-body-card">
+        {{dataPokemon()!.data!.speed}}
+      </div>
+    </div>
+
+  </div>
+</div>

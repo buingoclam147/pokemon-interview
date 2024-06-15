@@ -1,0 +1,15 @@
+select.select {
+  padding: 8px 4px;
+  border-radius: 8px;
+  border: 1px solid #ccc;
+  background-color: white;
+  color: #333;
+  min-width: 56px;
+  font-size: 16px;
+  option.option {
+    background-color: white;
+    color: #333;
+    font-size: 14px;
+    font-weight: 600;
+  }
+}
