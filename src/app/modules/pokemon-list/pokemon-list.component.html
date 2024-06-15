@@ -14,10 +14,10 @@
       </select>
     </div>
     <div class="table-container">
-      <table class="table-header" border="0" cellspacing="0" cellpadding="0">
+      <table class="table-header hidden-by-mobile" border="0" cellspacing="0" cellpadding="0">
         <thead>
           <tr class="tr-header-table">
-            <th class="th-item">avatar</th>
+            <!-- <th class="th-item">avatar</th> -->
             <th class="th-item">Tên</th>
             <th class="th-item">Máu</th>
             <th class="th-item">Phòng thủ</th>
@@ -31,25 +31,53 @@
       <div class="container-table-body tds-custom-scroll">
         <table class="table-body" border="0" cellspacing="0" cellpadding="0">
           <tbody>
-            <tr *ngFor="let pokemon of dataPokemons()?.data" class="tr-body-table" (click)="idModal = pokemon.id">
-              <td class="td-item">
-                <img [ngSrc]="'https://api.vandvietnam.com/api/pokemon-api/pokemons/'+pokemon.id+'/sprite'" alt="avatar"
-                  [width]="96" [height]="96" ng-optimized-image priority>
-              </td>
-              <td class="td-item primary font-semibold">{{pokemon.name}}</td>
-              <td class="td-item">{{pokemon.hp}}</td>
-              <td class="td-item">{{pokemon.defense}}</td>
-              <td class="td-item">{{pokemon.sp_def}}</td>
-              <td class="td-item">{{pokemon.sp_atk}}</td>
-              <td class="td-item">{{pokemon.attack}}</td>
-              <td class="td-item">{{pokemon.speed}}</td>
-            </tr>
+            <ng-container *ngFor="let pokemon of dataPokemons()?.data">
+              <tr class="tr-body-table" (click)="idModal = pokemon.id">
+                <!-- <td class="td-item">
+                  <img [ngSrc]="'https://api.vandvietnam.com/api/pokemon-api/pokemons/'+pokemon.id+'/sprite'" alt="avatar"
+                    [width]="96" [height]="96" ng-optimized-image priority>
+                </td> -->
+                <td class="td-item primary font-semibold">
+                  <div class="title-td-item">
+                    Tên:
+                  </div>
+                  {{pokemon.name}}
+                </td>
+                <td class="td-item">
+                  <div class="title-td-item">
+                    Máu:
+                  </div> {{pokemon.hp}}
+                </td>
+                <td class="td-item">
+                  <div class="title-td-item">
+                    Phòng thủ:
+                  </div> {{pokemon.defense}}
+                </td>
+                <td class="td-item">
+                  <div class="title-td-item">
+                    Phòng thủ đặc biệt:
+                  </div> {{pokemon.sp_def}}
+                </td>
+                <td class="td-item">
+                  <div class="title-td-item">
+                    Tấn công đặc biệt:
+                  </div> {{pokemon.sp_atk}}
+                </td>
+                <td class="td-item">
+                  <div class="title-td-item">
+                    Tấn công:
+                  </div> {{pokemon.attack}}
+                </td>
+                <td class="td-item">
+                  <div class="title-td-item">
+                    Tốc độ:
+                  </div> {{pokemon.speed}}
+                </td>
+              </tr>
+            </ng-container>
           </tbody>
         </table>
       </div>
-      <tbody *ngIf="isLoading()" class="loading">
-        ...loading
-      </tbody>
       <div class="table-footer">
         <div class="left-table-footer">
           <div>
@@ -63,14 +91,14 @@
             </div>
           </div>
           <div class="page-size-option">
-            <div>Hiển thị</div>
+            <div class="hidden-by-mobile">Hiển thị</div>
             <select class="select" [(ngModel)]="filter()['page[size]']" (ngModelChange)="onChangePageSize($event)">
               <option [value]="item.value" *ngFor="let item of pageSizeOption">{{item.label}}</option>
             </select>
-            <div>mục</div>
+            <div class="hidden-by-mobile">mục</div>
           </div>
         </div>
-        <div class="right-table-footer">
+        <div class="right-table-footer hidden-by-mobile">
           <div class="total-item">Tổng số mục: {{ dataPokemons()?.meta!.total || 0}}</div>
         </div>
       </div>
