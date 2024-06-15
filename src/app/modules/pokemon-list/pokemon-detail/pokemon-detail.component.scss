@@ -56,6 +56,9 @@
     margin-top: 8px;
     grid-template-columns: repeat(3, minmax(0, 1fr));
     gap: 12px;
+    .info-item-body-card:nth-child(3n) {
+      border-right: none;
+    }
     .info-item-body-card {
       grid-column: span 1 / span 1;
       gap: 8px;
@@ -76,8 +79,58 @@
         margin: 0;
       }
     }
-    .item-info-body-card:last-child {
-      border-right: none;
+  }
+}
+
+@media (max-width: 768px) {
+  .body-card {
+    margin-top: 16px;
+    padding: 4px;
+    .name-body-card {
+      font-size: 20px;
+      font-weight: 600;
+      color: #1f2937;
+      margin: 0;
+      display: flex;
+      justify-content: center;
+    }
+    .info-body-card {
+      display: grid;
+      justify-content: space-between;
+      align-items: center;
+      margin-top: 6px;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 12px;
+      .info-item-body-card:nth-child(3n) {
+        border-right: 1px solid #cbd2de;
+      }
+      .info-item-body-card:nth-child(2n) {
+        border-right: none !important;
+      }
+      .info-item-body-card {
+        grid-column: span 1 / span 1;
+        gap: 6px;
+        border-right: 1px solid #cbd2de;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+        .info-title-body-card {
+          font-size: 12px;
+          color: #1f2937;
+          margin: 0;
+        }
+        .info-value-body-card {
+          font-size: 14px;
+          font-weight: 600;
+          color: #1f2937;
+          margin: 0;
+        }
+      }
+      /* Sửa lỗi border */
+      .info-item-body-card:last-child {
+        border-right: none;
+      }
     }
   }
 }

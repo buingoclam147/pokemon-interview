@@ -3,7 +3,7 @@ import { Component, inject, signal } from '@angular/core';
 import { toObservable } from '@angular/core/rxjs-interop';
 import { FormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
-import { catchError, delay, exhaustMap, finalize, map, of, startWith, tap } from 'rxjs';
+import { catchError, delay, exhaustMap, map, of, startWith, tap } from 'rxjs';
 import { PAGE_SIZE_OPTION } from '../../core/constants/table.const';
 import { IDataPokemonListDto, IRequestList, TKeyOfItemPokemonDto } from '../../core/models/pokemon.model';
 import { PokemonService } from '../../core/services/pokemon.service';
@@ -43,18 +43,14 @@ export class PokemonListComponent {
   private readonly ss = inject(SpinService)
   readonly filter = patchableSignal(FILTER_DEFAULT);
   readonly dataPokemons = signal<IDataPokemonListDto | null>(null);
-  readonly isLoading = signal(true);
 
   readonly listSort = LIST_SORT
   readonly sortByOptions = SORT_BY_OPTIONS
   readonly pageSizeOption = PAGE_SIZE_OPTION
-
   idModal: string | null = null
 
   readonly pokemons$ = toObservable(this.filter).pipe(
-    tap(() => {
-      this.isLoading.set(true);
-    }),
+
     map((filter) => {
       const { sortBy, sort, ...req } = filter;
       return { ...req, sort: filter.sort && `${filter.sortBy}${filter.sort}` }
@@ -64,7 +60,6 @@ export class PokemonListComponent {
         .pipe(
           delay(1000),
           tap((response) => this.dataPokemons.set(response)),
-          finalize(() => this.isLoading.set(false)),
           catchError(() => {
             this.dataPokemons.set(null);
             return of(null)

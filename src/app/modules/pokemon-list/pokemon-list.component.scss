@@ -82,19 +82,6 @@ div.container {
         tbody tr td:last-child {
           border-right: 1px solid #e5e7eb;
         }
-        tbody tr:last-child {
-          td {
-            border-bottom: 1px solid #e5e7eb;
-          }
-        }
-        .loading {
-          display: table-footer-group;
-          vertical-align: middle;
-          height: 100px;
-          width: 100%;
-          font-size: 24px;
-          font-weight: bold;
-        }
         tr.tr-body-table:nth-child(odd) {
           background-color: #f9fbfc; /* Màu cho dòng lẻ */
         }
@@ -110,10 +97,16 @@ div.container {
             // background-color: #f9f9f9;
             text-align: center;
           }
+          td.td-item {
+            .title-td-item {
+              display: none;
+            }
+          }
         }
       }
     }
     div.table-footer {
+      border-top: 1px solid #e5e7eb;
       height: 50px;
       width: 100%;
       display: flex;
@@ -131,6 +124,8 @@ div.container {
         text-align: center;
       }
       .left-table-footer {
+        justify-content: space-between;
+        flex-grow: 0;
         display: flex;
         gap: 16px;
         align-items: center;
@@ -156,6 +151,8 @@ div.container {
         }
       }
       .right-table-footer {
+        flex: 1 1 0%;
+        justify-content: end;
         font-weight: 600;
         display: flex;
         height: 100%;
@@ -178,4 +175,34 @@ div.container {
   justify-content: center;
   gap: 8px;
   width: 100%;
+}
+
+@media (max-width: 768px) {
+  tr.tr-body-table:first-child {
+    border-top-left-radius: 8px;
+    border-top-right-radius: 8px;
+  }
+  tr.tr-body-table {
+    display: grid;
+    border-left: 1px solid #e5e7eb;
+    border-right: 1px solid #e5e7eb;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    height: 156px !important;
+    td.td-item:first-child {
+      border: none !important;
+      grid-column: span 2 / span 2;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+    td.td-item {
+      .title-td-item {
+        display: inline !important;
+        font-size: 14px;
+        font-weight: 600;
+        color: #1f2937;
+        margin: 0;
+      }
+    }
+  }
 }
