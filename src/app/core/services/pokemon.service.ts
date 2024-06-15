@@ -12,7 +12,7 @@ export class PokemonService {
   private readonly api = 'https://api.vandvietnam.com/api/pokemon-api/pokemons'
 
   getListPokemons$(request: IRequestList): Observable<IDataPokemonListDto> {
-    return this.http.get<IDataPokemonListDto>(`${this.api}${covertQueryParams(request)}`)
+    return this.http.get<IDataPokemonListDto>(`${this.api}${covertQueryParams({ ...request })}`)
   }
 
   getPokemonById$(id: string): Observable<IDetailPokemonDto> {

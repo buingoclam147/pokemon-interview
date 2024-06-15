@@ -46,6 +46,7 @@ export interface IItemPokemonDto {
 export type TKeyOfItemPokemonDto = keyof IItemPokemonDto;
 export interface IRequestList extends ITableRequestBase {
   sort: string;
+  'filter[type]': string | null | number;
 }
 
 export interface IDetailPokemonDto {

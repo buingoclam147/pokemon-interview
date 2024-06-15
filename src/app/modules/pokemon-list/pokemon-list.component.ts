@@ -13,6 +13,7 @@ import { ModalComponent } from '../../shared/components/modal/modal.component';
 import { PokemonDetailComponent } from './pokemon-detail/pokemon-detail.component';
 
 const LIST_SORT: { value: TKeyOfItemPokemonDto, label: string }[] = [
+  { value: 'number', label: 'Số thứ tự' },
   { value: 'total', label: 'Tổng' },
   { value: 'hp', label: 'Máu' },
   { value: 'attack', label: 'Tấn công' },
@@ -27,7 +28,28 @@ const SORT_BY_OPTIONS: { value: string, label: string }[] = [
   { value: '-', label: 'Từ dưới lên trên' }
 ]
 
-const FILTER_DEFAULT: IRequestList & { sortBy: string } = { 'page[size]': 10, 'page[number]': 1, sort: '', sortBy: '' };
+const TYPE_OF_POKEMON = [
+  { value: 0, label: 'Hệ bình thường' },
+  { value: 1, label: 'Hệ lửa' },
+  { value: 2, label: 'Hệ nước' },
+  { value: 3, label: 'Hệ cỏ' },
+  { value: 4, label: 'Hệ điện' },
+  { value: 5, label: 'Hệ băng' },
+  { value: 6, label: 'Hệ chiến đấu' },
+  { value: 7, label: 'Hệ độc' },
+  { value: 8, label: 'Hệ đất' },
+  { value: 9, label: 'Hệ bay' },
+  { value: 10, label: 'Hệ tâm linh' },
+  { value: 11, label: 'Hệ côn trùng' },
+  { value: 12, label: 'Hệ đá' },
+  { value: 13, label: 'Hệ ma' },
+  { value: 14, label: 'Hệ bóng tối' },
+  { value: 15, label: 'Hệ rồng' },
+  { value: 16, label: 'Hệ thép' },
+  { value: 17, label: 'Hệ tiên' },
+]
+
+const FILTER_DEFAULT: IRequestList & { sortBy: string } = { 'page[size]': 10, 'page[number]': 1, sort: 'number', sortBy: '', 'filter[type]': '' };
 @Component({
   selector: 'pokemon-list',
   standalone: true,
@@ -47,6 +69,7 @@ export class PokemonListComponent {
   readonly listSort = LIST_SORT
   readonly sortByOptions = SORT_BY_OPTIONS
   readonly pageSizeOption = PAGE_SIZE_OPTION
+  readonly typeOfPokemon = TYPE_OF_POKEMON
   idModal: string | null = null
 
   readonly pokemons$ = toObservable(this.filter).pipe(
@@ -85,5 +108,9 @@ export class PokemonListComponent {
 
   onChangePageSize(pageSize: number) {
     this.filter.patch({ 'page[size]': pageSize });
+  }
+
+  onChangeFilterType(type: number | string) {
+    this.filter.patch({ 'filter[type]': type === '' ? '' : +type + '' });
   }
 }
