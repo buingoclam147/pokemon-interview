@@ -5,13 +5,19 @@
       Danh sách Pokemon
     </h2>
     <div class="filter-container">
-      <select [(ngModel)]="filter().sort" class="select select-sort" (ngModelChange)="onChangeSort($event)">
-        <option value="" selected>Sắp xếp theo</option>
-        <option [value]="item.value" *ngFor="let item of listSort">{{item.label}}</option>
+      <select [(ngModel)]="filter()['filter[type]']" class="select select-filter-type"
+        (ngModelChange)="onChangeFilterType($event)">
+        <option value="" selected>Lọc theo hệ</option>
+        <option [value]="item.value" *ngFor="let item of typeOfPokemon">{{item.label}}</option>
       </select>
-      <select class="select select-sort-by" [(ngModel)]="filter().sortBy" (ngModelChange)="onChangeSortBy($event)">
-        <option [value]="item.value" *ngFor="let item of sortByOptions">{{item.label}}</option>
-      </select>
+      <div class="group-select-pokemon">
+        <select [(ngModel)]="filter().sort" class="select select-sort" (ngModelChange)="onChangeSort($event)">
+          <option [value]="item.value" *ngFor="let item of listSort">{{item.label}}</option>
+        </select>
+        <select class="select select-sort-by" [(ngModel)]="filter().sortBy" (ngModelChange)="onChangeSortBy($event)">
+          <option [value]="item.value" *ngFor="let item of sortByOptions">{{item.label}}</option>
+        </select>
+      </div>
     </div>
     <div class="table-container">
       <table class="table-header hidden-by-mobile" border="0" cellspacing="0" cellpadding="0">

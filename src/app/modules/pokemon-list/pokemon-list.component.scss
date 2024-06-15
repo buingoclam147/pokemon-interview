@@ -20,6 +20,10 @@ div.container {
     display: flex;
     justify-content: end;
     gap: 4px;
+    .select-filter-type {
+      min-width: 200px;
+      width: 100%;
+    }
   }
   div.table-container {
     flex: 1 1 0%;
@@ -163,11 +167,18 @@ div.container {
   }
 }
 
-.select-sort {
-  min-width: 170px;
-}
-.select-sort-by {
-  min-width: 200px;
+.group-select-pokemon {
+  display: flex;
+  gap: 4px;
+  width: 100%;
+  .select-sort {
+    min-width: 170px;
+    width: 100%;
+  }
+  .select-sort-by {
+    min-width: 200px;
+    width: 100%;
+  }
 }
 
 .footer-modal {
@@ -178,6 +189,14 @@ div.container {
 }
 
 @media (max-width: 768px) {
+  div.filter-container {
+    padding-top: 4px;
+    padding-bottom: 4px;
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    gap: 4px;
+  }
   tr.tr-body-table:first-child {
     border-top-left-radius: 8px;
     border-top-right-radius: 8px;
