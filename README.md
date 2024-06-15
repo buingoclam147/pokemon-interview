@@ -3,6 +3,8 @@
 ## Mô tả
 
 Ứng dụng Pokemon này cho phép bạn xem danh sách các Pokemon, sắp xếp theo số hiệu, chỉ số,lọc theo loại và xem chi tiết thông tin của từng Pokemon. Ứng dụng được phát triển bằng Angular 18, sử dụng Pokemon API [https://documenter.getpostman.com/view/24788471/2s946k6Aop] và không sử dụng bất kì thư viện hay module nào bên ngoài.
+Ứng dụng được push trên nền tảng vercel: https://pokemon-interview.vercel.app/pokemon
+\*Lưu ý: Ứng dụng đã được làm delay call api 1s nhằm trải nghiệm spinner
 
 ## Tính năng
 
@@ -53,31 +55,12 @@
 
 ## Ví dụ hình ảnh
 
-![alt text](https://github.com/buingoclam147/pokemon-interview/src/accets/images/Screenshot_1.png)
-
-[Ảnh: Hình ảnh danh sách Pokemon với các thông tin cơ bản như số hiệu, tên, hình ảnh nhỏ]
-
-[Ảnh: Hình ảnh danh sách Pokemon được sắp xếp theo số hiệu]
-
-[Ảnh: Hình ảnh danh sách Pokemon được sắp xếp theo một chỉ số cụ thể, ví dụ như total]
-
-[Ảnh: Hình ảnh danh sách Pokemon được lọc theo một loại cụ thể, ví dụ như Fire]
-
-[Ảnh: Hình ảnh popup hiển thị chi tiết Pokemon với thông tin đầy đủ, bao gồm hình ảnh lớn, chỉ số, loại,...]
-
-[Ảnh: Hình ảnh Pokemon App với các tính năng UI/UX được cải thiện]
-
-[Ảnh: Hình ảnh spinner-loader đang hoạt động]
-
-[Ảnh: Hình ảnh ứng dụng được hiển thị trên các thiết bị khác nhau]
-
-[Ảnh: Hình ảnh một phần giao diện của ứng dụng Pokemon được tạo thủ công bằng HTML, CSS, JavaScript]
-
-[Ảnh: Hình ảnh một đoạn code HTML, CSS hoặc JavaScript cho một phần giao diện của ứng dụng]
-
-[Ảnh: Hình ảnh Pokemon App được triển khai trên một nền tảng, ví dụ như Netlify, Vercel, GitHub Pages]
-
-[Ảnh: Hình ảnh ứng dụng Pokemon đang hoạt động trên một URL]
+![alt text](https://github.com/buingoclam147/pokemon-interview/blob/master/src/assets/images/Screenshot_1.png)
+![alt text](https://github.com/buingoclam147/pokemon-interview/blob/master/src/assets/images/Screenshot_2.png)
+![alt text](https://github.com/buingoclam147/pokemon-interview/blob/master/src/assets/images/Screenshot_3.png)
+![alt text](https://github.com/buingoclam147/pokemon-interview/blob/master/src/assets/images/Screenshot_4.png)
+![alt text](https://github.com/buingoclam147/pokemon-interview/blob/master/src/assets/images/Screenshot_5.png)
+![alt text](https://github.com/buingoclam147/pokemon-interview/blob/master/src/assets/images/Screenshot_6.png)
 
 ## Ghi chú
 

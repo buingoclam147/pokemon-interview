@@ -1,4 +1,4 @@
-export const PAGE_SIZE_OPTION = [
+export const PAGE_SIZE_OPTION: { value: number, label: number }[] = [
   {
     value: 10, label: 10,
   },

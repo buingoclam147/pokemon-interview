@@ -1,15 +1,15 @@
 import { AsyncPipe, NgFor, NgIf, NgOptimizedImage, PRECONNECT_CHECK_BLOCKLIST } from '@angular/common';
-import { Component, inject, signal } from '@angular/core';
+import { ChangeDetectionStrategy, Component, inject, signal } from '@angular/core';
 import { toObservable } from '@angular/core/rxjs-interop';
 import { FormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
+import { PAGE_SIZE_OPTION } from '@core/constants/table.const';
+import { IDataPokemonListDto, IRequestList, TKeyOfItemPokemonDto } from '@core/models/pokemon.model';
+import { PokemonService } from '@core/services/pokemon.service';
+import { SpinService } from '@core/services/spin.service';
+import { patchableSignal } from '@core/services/utils/common.function';
+import { ModalComponent } from '@shared/components/modal/modal.component';
 import { catchError, delay, exhaustMap, map, of, startWith, tap } from 'rxjs';
-import { PAGE_SIZE_OPTION } from '../../core/constants/table.const';
-import { IDataPokemonListDto, IRequestList, TKeyOfItemPokemonDto } from '../../core/models/pokemon.model';
-import { PokemonService } from '../../core/services/pokemon.service';
-import { SpinService } from '../../core/services/spin.service';
-import { patchableSignal } from '../../core/services/utils/common.function';
-import { ModalComponent } from '../../shared/components/modal/modal.component';
 import { PokemonDetailComponent } from './pokemon-detail/pokemon-detail.component';
 
 const LIST_SORT: { value: TKeyOfItemPokemonDto, label: string }[] = [
@@ -59,6 +59,7 @@ const FILTER_DEFAULT: IRequestList & { sortBy: string } = { 'page[size]': 10, 'p
   ],
   templateUrl: './pokemon-list.component.html',
   styleUrl: './pokemon-list.component.scss',
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class PokemonListComponent {
   private readonly pokemonSvc = inject(PokemonService);

@@ -1,7 +1,7 @@
 import { CommonModule } from '@angular/common';
-import { Component, ElementRef, ViewChild } from '@angular/core';
+import { ChangeDetectionStrategy, Component, ElementRef, inject, OnInit, ViewChild, ViewEncapsulation } from '@angular/core';
+import { SpinService } from '@core/services/spin.service';
 import { Observable } from 'rxjs';
-import { SpinService } from '../../../core/services/spin.service';
 
 @Component({
   selector: 'spin',
@@ -10,11 +10,13 @@ import { SpinService } from '../../../core/services/spin.service';
   template: ` <div class="spinning-global" *ngIf="ss.loading$ | async" #spin>
   <div class="spinning"></div>
 </div>`,
+  changeDetection: ChangeDetectionStrategy.OnPush,
+  encapsulation: ViewEncapsulation.None
 })
-export class SpinComponent {
+export class SpinComponent implements OnInit {
+  protected readonly ss = inject(SpinService)
   @ViewChild('spin') spin!: ElementRef<HTMLDivElement>;
   isLoading$!: Observable<boolean>;
-  constructor(protected ss: SpinService) { }
 
   ngOnInit() {
     // Lắng nghe sự kiện keydown để ngăn chặn sự kiện bàn phím

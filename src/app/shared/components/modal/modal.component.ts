@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { Component, ElementRef, EventEmitter, HostListener, Input, Output, ViewChild, ViewEncapsulation } from '@angular/core';
+import { ChangeDetectionStrategy, Component, ElementRef, EventEmitter, HostListener, Input, Output, ViewChild, ViewEncapsulation } from '@angular/core';
 type TSizeModal = 'sm' | 'md' | 'lg';
 const OPTION_SIZE_MODAL: Record<TSizeModal, number> = {
   'sm': 300,
@@ -17,7 +17,8 @@ const OPTION_SIZE_MODAL: Record<TSizeModal, number> = {
   host: {
     'class': 'parent-container',
     'id': 'modal'
-  }
+  },
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class ModalComponent {
   @Input() show: boolean = false;
